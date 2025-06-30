@@ -134,7 +134,63 @@
         gap: 20px;
       }
     }
-  </style>
+  
+    .start-menu {
+      position: fixed;
+      bottom: 48px;
+      left: 0;
+      width: 400px;
+      height: 260px;
+      background: #e3e3e3;
+      border: 2px outset #fff;
+      font-family: Tahoma, sans-serif;
+      font-size: 13px;
+      display: flex;
+      flex-direction: row;
+      z-index: 1100;
+    }
+
+    .start-menu-left {
+      width: 50%;
+      background: #d6e6ff;
+      padding: 10px;
+      border-right: 1px solid #999;
+    }
+
+    .start-menu-right {
+      width: 50%;
+      background: #f0f0f0;
+      padding: 10px;
+    }
+
+    .start-menu-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #000080;
+    }
+
+    .start-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .start-menu ul li {
+      padding: 6px 8px;
+      margin-bottom: 4px;
+      background: #fff;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .start-menu ul li:hover {
+      background: #0066cc;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+</style>
 </head>
 <body>
   <div class="xp-window" id="xpWindow" style="top: 20%; left: 50%; transform: translateX(-50%);">
@@ -160,7 +216,30 @@
     </div>
   </div>
 
-  <div class="taskbar"></div>
+  
+<div class="taskbar" onclick="toggleStartMenu()"></div>
+<div id="start-menu" class="start-menu hidden">
+  <div class="start-menu-left">
+    <div class="start-menu-header">AWGE OS</div>
+    <ul>
+      <li>🎥 Media Player</li>
+      <li>💬 Forum</li>
+      <li>📀 DVD Archive</li>
+      <li>❓ About</li>
+      <li>📟 Contact</li>
+    </ul>
+  </div>
+  <div class="start-menu-right">
+    <ul>
+      <li>🖥️ My Computer</li>
+      <li>📁 Documents</li>
+      <li>⚙️ Control Panel</li>
+      <li>🔍 Search</li>
+      <li>🔒 Shut Down</li>
+    </ul>
+  </div>
+</div>
+
 
   <audio id="bg-audio" src="swagswagswag.mp3" autoplay loop></audio>
   <script>
@@ -251,7 +330,63 @@
     .hidden {
       display: none;
     }
-  </style>
+  
+    .start-menu {
+      position: fixed;
+      bottom: 48px;
+      left: 0;
+      width: 400px;
+      height: 260px;
+      background: #e3e3e3;
+      border: 2px outset #fff;
+      font-family: Tahoma, sans-serif;
+      font-size: 13px;
+      display: flex;
+      flex-direction: row;
+      z-index: 1100;
+    }
+
+    .start-menu-left {
+      width: 50%;
+      background: #d6e6ff;
+      padding: 10px;
+      border-right: 1px solid #999;
+    }
+
+    .start-menu-right {
+      width: 50%;
+      background: #f0f0f0;
+      padding: 10px;
+    }
+
+    .start-menu-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #000080;
+    }
+
+    .start-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .start-menu ul li {
+      padding: 6px 8px;
+      margin-bottom: 4px;
+      background: #fff;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .start-menu ul li:hover {
+      background: #0066cc;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+</style>
 
   <script>
     function toggleStartMenu() {
