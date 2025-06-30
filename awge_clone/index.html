@@ -147,5 +147,32 @@
       </div>
     </div>
   </div>
+
+<script>
+  const xpWindow = document.querySelector('.xp-window');
+  const titleBar = document.querySelector('.xp-title-bar');
+  let isDragging = false, offsetX = 0, offsetY = 0;
+
+  titleBar.style.cursor = 'move';
+  titleBar.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    const rect = xpWindow.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      xpWindow.style.position = 'absolute';
+      xpWindow.style.left = `${e.clientX - offsetX}px`;
+      xpWindow.style.top = `${e.clientY - offsetY}px`;
+      xpWindow.style.margin = '0';
+    }
+  });
+</script>
 </body>
 </html>
