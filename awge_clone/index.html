@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AWGE Clone XP</title>
+  <title>AWGE XP Final</title>
   <style>
     body {
-      background-color: black;
+      background: url('Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg') no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Courier New', Courier, monospace;
       color: white;
       height: 100vh;
@@ -71,12 +72,19 @@
       text-align: center;
     }
 
-    .button-grid {
+    .top-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 50px;
       justify-items: center;
       align-items: center;
+    }
+
+    .bottom-row {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      margin-top: 30px;
     }
 
     .nav-button {
@@ -103,8 +111,13 @@
         width: 95%;
       }
 
-      .button-grid {
+      .top-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bottom-row {
+        flex-direction: column;
+        gap: 20px;
       }
     }
   </style>
@@ -123,11 +136,12 @@
       File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Help
     </div>
     <div class="xp-content">
-      <div class="button-grid">
+      <div class="top-grid">
         <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media" /><h3>MEDIA</h3></button>
         <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif" alt="Forum" /><h3>FORUM</h3></button>
         <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif" alt="DVD" /><h3>DVD</h3></button>
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/hats_2.gif" alt="Shop" /><h3>SHOP</h3></button>
+      </div>
+      <div class="bottom-row">
         <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif" alt="About" /><h3>ABOUT</h3></button>
         <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif" alt="Contact" /><h3>CONTACT</h3></button>
       </div>
