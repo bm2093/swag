@@ -1,19 +1,18 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AWGE XP with Sound</title>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWGE XP Final</title>
   <style>
     body {
-      background: url('Microsoft_Nostalgic_Windows_Wallpaper_4k_low_quality.jpg') no-repeat center center fixed;
+      background: url('Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Courier New', Courier, monospace;
       color: white;
-      margin: 0;
       height: 100vh;
-      overflow: hidden;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .xp-window {
@@ -21,10 +20,6 @@
       border: 2px solid #000080;
       background-color: #ece9d8;
       box-shadow: 4px 4px 0 #000;
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
     .xp-title-bar {
@@ -37,7 +32,6 @@
       justify-content: space-between;
       align-items: center;
       font-family: Tahoma, sans-serif;
-      cursor: move;
     }
 
     .xp-title-bar span {
@@ -75,7 +69,7 @@
       text-align: center;
     }
 
-    .button-grid {
+    .top-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 50px;
@@ -109,36 +103,25 @@
       font-size: 16px;
     }
 
-    .taskbar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 48px;
-      background: url('swaggg.jpg') no-repeat center center;
-      background-size: contain;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-    }
+    @media (max-width: 700px) {
+      .xp-window {
+        width: 95%;
+      }
 
-    .start-button {
-      margin-left: 16px;
-      padding: 4px 12px;
-      background: #008000;
-      border: 2px outset #004400;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      font-family: Tahoma, sans-serif;
-    }
+      .top-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
+      .bottom-row {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <div class="xp-window" id="xpWindow">
-    <div class="xp-title-bar" id="titleBar">
+  <div class="xp-window">
+    <div class="xp-title-bar" style="cursor: move;">
       <span>AWGE - Menu</span>
       <div class="xp-buttons">
         <div class="xp-button">_</div>
@@ -146,54 +129,75 @@
         <div class="xp-button">✕</div>
       </div>
     </div>
-    <div class="xp-menu-bar">File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Help</div>
+    <div class="xp-menu-bar">
+      File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Help
+    </div>
     <div class="xp-content">
-      <div class="button-grid">
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media" /><h3>MEDIA</h3></button>
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif" alt="Forum" /><h3>FORUM</h3></button>
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif" alt="DVD" /><h3>DVD</h3></button>
+      <div class="top-grid">
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media"><h3>MEDIA</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif" alt="Forum"><h3>FORUM</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif" alt="DVD"><h3>DVD</h3></button>
       </div>
       <div class="bottom-row">
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif" alt="About" /><h3>ABOUT</h3></button>
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif" alt="Contact" /><h3>CONTACT</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif" alt="About"><h3>ABOUT</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif" alt="Contact"><h3>CONTACT</h3></button>
       </div>
     </div>
   </div>
 
-  <div class="taskbar">
-    <button class="start-button" onclick="playAudio()">Start</button>
-  </div>
+<script>
+  const xpWindow = document.querySelector('.xp-window');
+  const titleBar = document.querySelector('.xp-title-bar');
+  let isDragging = false, offsetX = 0, offsetY = 0;
 
-  <audio id="bg-audio" src="swagswagswag.mp3" loop></audio>
+  titleBar.style.cursor = 'move';
+  titleBar.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    const rect = xpWindow.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+  });
 
-  <script>
-    const audio = document.getElementById('bg-audio');
-    function playAudio() {
-      audio.volume = 0.75;
-      audio.play();
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      xpWindow.style.position = 'absolute';
+      xpWindow.style.left = `${e.clientX - offsetX}px`;
+      xpWindow.style.top = `${e.clientY - offsetY}px`;
+      xpWindow.style.margin = '0';
     }
+  });
+</script>
 
-    // Draggable XP window
-    const windowBox = document.getElementById('xpWindow');
-    const titleBar = document.getElementById('titleBar');
-    let isDragging = false, offsetX = 0, offsetY = 0;
+  <div class="taskbar"></div>
+<style>
+  .taskbar {
+    height: 48px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 
-    titleBar.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      const rect = windowBox.getBoundingClientRect();
-      offsetX = e.clientX - rect.left;
-      offsetY = e.clientY - rect.top;
-    });
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: url('swaggg.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: 1000;
+  }
+</style>
 
-    document.addEventListener('mouseup', () => isDragging = false);
-    document.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        windowBox.style.left = `${e.clientX - offsetX}px`;
-        windowBox.style.top = `${e.clientY - offsetY}px`;
-        windowBox.style.position = 'absolute';
-        windowBox.style.margin = '0';
-      }
-    });
-  </script>
-</body>
-</html>
+<audio id="bg-audio" src="URL 湖 (152kbit_Opus).opus" autoplay="" loop=""></audio>
+<script>
+  const audio = document.getElementById('bg-audio');
+  audio.volume = 0.75;
+</script>
+
+
+
+
+</body></html>
