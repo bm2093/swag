@@ -1,4 +1,7 @@
-<html lang="en"><head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AWGE XP Final</title>
@@ -13,6 +16,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
     .xp-window {
@@ -20,6 +24,7 @@
       border: 2px solid #000080;
       background-color: #ece9d8;
       box-shadow: 4px 4px 0 #000;
+      position: absolute;
     }
 
     .xp-title-bar {
@@ -32,6 +37,7 @@
       justify-content: space-between;
       align-items: center;
       font-family: Tahoma, sans-serif;
+      cursor: move;
     }
 
     .xp-title-bar span {
@@ -103,6 +109,17 @@
       font-size: 16px;
     }
 
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      background: url('swaggg.jpg') no-repeat bottom center;
+      background-size: 100% 100%;
+      z-index: 1000;
+    }
+
     @media (max-width: 700px) {
       .xp-window {
         width: 95%;
@@ -120,8 +137,8 @@
   </style>
 </head>
 <body>
-  <div class="xp-window">
-    <div class="xp-title-bar" style="cursor: move;">
+  <div class="xp-window" id="xpWindow" style="top: 20%; left: 50%; transform: translateX(-50%);">
+    <div class="xp-title-bar" id="titleBar">
       <span>AWGE - Menu</span>
       <div class="xp-buttons">
         <div class="xp-button">_</div>
@@ -129,9 +146,7 @@
         <div class="xp-button">✕</div>
       </div>
     </div>
-    <div class="xp-menu-bar">
-      File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Help
-    </div>
+    <div class="xp-menu-bar">File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Help</div>
     <div class="xp-content">
       <div class="top-grid">
         <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media"><h3>MEDIA</h3></button>
@@ -145,59 +160,33 @@
     </div>
   </div>
 
-<script>
-  const xpWindow = document.querySelector('.xp-window');
-  const titleBar = document.querySelector('.xp-title-bar');
-  let isDragging = false, offsetX = 0, offsetY = 0;
-
-  titleBar.style.cursor = 'move';
-  titleBar.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    const rect = xpWindow.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-  });
-
-  document.addEventListener('mouseup', () => {
-    isDragging = false;
-  });
-
-  document.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-      xpWindow.style.position = 'absolute';
-      xpWindow.style.left = `${e.clientX - offsetX}px`;
-      xpWindow.style.top = `${e.clientY - offsetY}px`;
-      xpWindow.style.margin = '0';
-    }
-  });
-</script>
-
   <div class="taskbar"></div>
-<style>
-  .taskbar {
-    height: 48px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
 
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: url('swaggg.jpg') no-repeat center center;
-    background-size: cover;
-    z-index: 1000;
-  }
-</style>
+  <audio id="bg-audio" src="swagswagswag.mp3" autoplay loop></audio>
+  <script>
+    const xpWindow = document.querySelector('.xp-window');
+    const titleBar = document.querySelector('.xp-title-bar');
+    const audio = document.getElementById('bg-audio');
+    audio.volume = 0.75;
 
-<audio id="bg-audio" src="swagswagswag.mp3" autoplay="" loop=""></audio>
-<script>
-  const audio = document.getElementById('bg-audio');
-  audio.volume = 0.75;
-</script>
+    let isDragging = false, offsetX = 0, offsetY = 0;
 
+    titleBar.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = xpWindow.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+    });
 
-
-
-</body></html>
+    document.addEventListener('mouseup', () => isDragging = false);
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        xpWindow.style.left = `${e.clientX - offsetX}px`;
+        xpWindow.style.top = `${e.clientY - offsetY}px`;
+        xpWindow.style.position = 'absolute';
+        xpWindow.style.margin = '0';
+      }
+    });
+  </script>
+</body>
+</html>
