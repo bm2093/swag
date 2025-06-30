@@ -3,37 +3,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AWGE Gate</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWGE Clone</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: black;
+      font-family: 'Courier New', Courier, monospace;
+      color: white;
+      overflow: hidden;
+    }
+    .logo {
+      width: 120px;
+      margin: 20px;
+      cursor: pointer;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 800px;
+      margin-top: 40px;
+    }
+    .nav-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+    .nav-button img {
+      height: 100px;
+      margin-bottom: 10px;
+    }
+    .nav-button h3 {
+      font-size: 18px;
+    }
+    @media (max-width: 600px) {
+      .button-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .nav-button img {
+        height: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-  <div id="password-gate">
-    <h2>Enter the Code</h2>
-    <input type="password" id="code-input" placeholder="••••••" />
-    <button onclick="checkPassword()">Enter</button>
-    <p id="error-msg"></p>
-  </div>
-
-  <video class="bg-video" autoplay loop muted playsinline>
-    <source src="your-video.mp4" type="video/mp4" />
-  </video>
-
-  <div id="main-content" class="hidden">
-    <div class="glitch-text">
-      <h1 data-text="AWGE">AWGE</h1>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">Shop</a>
-        <a href="#">Contact</a>
-        <a href="https://awge.com/enter" class="secret">Secret</a>
-      </nav>
+  <div class="container">
+    <img src="https://dwvo2npct47gg.cloudfront.net/images/awge-halftone-logo.png" class="logo" alt="AWGE Logo">
+    <div class="button-grid">
+      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media" /><h3>MEDIA</h3></button>
+      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif" alt="Forum" /><h3>FORUM</h3></button>
+      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif" alt="DVD" /><h3>DVD</h3></button>
+      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/hats_2.gif" alt="Shop" /><h3>SHOP</h3></button>
+      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif" alt="About" /><h3>ABOUT</h3></button>
+      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif" alt="Contact" /><h3>CONTACT</h3></button>
     </div>
   </div>
-
-  <audio id="glitch-sound" src="glitch.mp3" preload="auto"></audio>
-  <script src="script.js"></script>
 </body>
 </html>
