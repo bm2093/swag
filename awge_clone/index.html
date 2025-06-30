@@ -2,20 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AWGE XP Final</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWGE XP Startbar (CSS Only)</title>
   <style>
     body {
       background: url('Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Courier New', Courier, monospace;
       color: white;
-      height: 100vh;
       margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 100vh;
       overflow: hidden;
     }
 
@@ -25,6 +22,9 @@
       background-color: #ece9d8;
       box-shadow: 4px 4px 0 #000;
       position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .xp-title-bar {
@@ -38,10 +38,6 @@
       align-items: center;
       font-family: Tahoma, sans-serif;
       cursor: move;
-    }
-
-    .xp-title-bar span {
-      flex-grow: 1;
     }
 
     .xp-buttons {
@@ -73,6 +69,104 @@
     .xp-content {
       padding: 30px;
       text-align: center;
+    }
+
+    .taskbar {
+      background: linear-gradient(to top, #0b5fc0 0%, #53a3f1 50%, #0b5fc0 100%);
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -1px 2px rgba(0,0,0,0.3);
+
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 48px;
+      width: 100%;
+      background: linear-gradient(to top, #0066cc 0%, #3399ff 100%);
+      border-top: 2px solid #003399;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+    }
+
+    .start-button {
+      background-color: #008000;
+      color: white;
+      font-family: Tahoma, sans-serif;
+      font-weight: bold;
+      padding: 4px 16px 4px 32px;
+      margin-left: 8px;
+      border: 2px outset #006600;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Windows_logo_-_2002.svg/32px-Windows_logo_-_2002.svg.png');
+      background-repeat: no-repeat;
+      background-size: 20px;
+      background-position: 6px center;
+      cursor: pointer;
+    }
+
+    .taskbar-clock {
+      margin-right: 12px;
+      color: #ffffff;
+      background: #3399ff;
+      padding: 6px 10px;
+      font-family: Tahoma, sans-serif;
+      font-size: 14px;
+      border: 1px solid #0077dd;
+    }
+
+    .start-menu {
+      position: fixed;
+      bottom: 48px;
+      left: 0;
+      width: 400px;
+      height: 260px;
+      background: #e3e3e3;
+      border: 2px outset #fff;
+      font-family: Tahoma, sans-serif;
+      font-size: 13px;
+      display: flex;
+      flex-direction: row;
+      z-index: 1100;
+    }
+
+    .start-menu-left {
+      width: 50%;
+      background: #d6e6ff;
+      padding: 10px;
+      border-right: 1px solid #999;
+    }
+
+    .start-menu-right {
+      width: 50%;
+      background: #f0f0f0;
+      padding: 10px;
+    }
+
+    .start-menu-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #000080;
+    }
+
+    .start-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .start-menu ul li {
+      padding: 6px 8px;
+      margin-bottom: 4px;
+      background: #fff;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .start-menu ul li:hover {
+      background: #0066cc;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
     }
 
     .top-grid {
@@ -108,92 +202,10 @@
     .nav-button h3 {
       font-size: 16px;
     }
-
-    .taskbar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 48px;
-      background: url('swaggg.jpg') no-repeat bottom center;
-      background-size: 100% 100%;
-      z-index: 1000;
-    }
-
-    @media (max-width: 700px) {
-      .xp-window {
-        width: 95%;
-      }
-
-      .top-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .bottom-row {
-        flex-direction: column;
-        gap: 20px;
-      }
-    }
-  
-    .start-menu {
-      position: fixed;
-      bottom: 48px;
-      left: 0;
-      width: 400px;
-      height: 260px;
-      background: #e3e3e3;
-      border: 2px outset #fff;
-      font-family: Tahoma, sans-serif;
-      font-size: 13px;
-      display: flex;
-      flex-direction: row;
-      z-index: 1100;
-    }
-
-    .start-menu-left {
-      width: 50%;
-      background: #d6e6ff;
-      padding: 10px;
-      border-right: 1px solid #999;
-    }
-
-    .start-menu-right {
-      width: 50%;
-      background: #f0f0f0;
-      padding: 10px;
-    }
-
-    .start-menu-header {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #000080;
-    }
-
-    .start-menu ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .start-menu ul li {
-      padding: 6px 8px;
-      margin-bottom: 4px;
-      background: #fff;
-      border: 1px solid #ccc;
-      cursor: pointer;
-    }
-
-    .start-menu ul li:hover {
-      background: #0066cc;
-      color: white;
-    }
-
-    .hidden {
-      display: none;
-    }
-</style>
+  </style>
 </head>
 <body>
-  <div class="xp-window" id="xpWindow" style="top: 20%; left: 50%; transform: translateX(-50%);">
+  <div class="xp-window" id="xpWindow">
     <div class="xp-title-bar" id="titleBar">
       <span>AWGE - Menu</span>
       <div class="xp-buttons">
@@ -216,38 +228,56 @@
     </div>
   </div>
 
-  
-<div class="taskbar" onclick="toggleStartMenu()"></div>
-<div id="start-menu" class="start-menu hidden">
-  <div class="start-menu-left">
-    <div class="start-menu-header">AWGE OS</div>
-    <ul>
-      <li>🎥 Media Player</li>
-      <li>💬 Forum</li>
-      <li>📀 DVD Archive</li>
-      <li>❓ About</li>
-      <li>📟 Contact</li>
-    </ul>
+  <div class="taskbar">
+    <div class="start-button" onclick="toggleStartMenu()">Start</div>
+    <div class="taskbar-clock" id="clock">00:00</div>
   </div>
-  <div class="start-menu-right">
-    <ul>
-      <li>🖥️ My Computer</li>
-      <li>📁 Documents</li>
-      <li>⚙️ Control Panel</li>
-      <li>🔍 Search</li>
-      <li>🔒 Shut Down</li>
-    </ul>
+
+  <div id="start-menu" class="start-menu hidden">
+    <div class="start-menu-left">
+      <div class="start-menu-header">AWGE OS</div>
+      <ul>
+        <li>🎥 Media Player</li>
+        <li>💬 Forum</li>
+        <li>📀 DVD Archive</li>
+        <li>❓ About</li>
+        <li>📟 Contact</li>
+      </ul>
+    </div>
+    <div class="start-menu-right">
+      <ul>
+        <li>🖥️ My Computer</li>
+        <li>📁 Documents</li>
+        <li>⚙️ Control Panel</li>
+        <li>🔍 Search</li>
+        <li>🔒 Shut Down</li>
+      </ul>
+    </div>
   </div>
-</div>
 
-
-  <audio id="bg-audio" src="swagswagswag.mp3" autoplay loop></audio>
   <script>
-    const xpWindow = document.querySelector('.xp-window');
-    const titleBar = document.querySelector('.xp-title-bar');
-    const audio = document.getElementById('bg-audio');
+    const audio = new Audio("swagswagswag.mp3");
+    audio.loop = true;
     audio.volume = 0.75;
+    audio.play();
 
+    function toggleStartMenu() {
+      const menu = document.getElementById('start-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    const clock = document.getElementById("clock");
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      clock.textContent = `${(hours % 12) || 12}:${minutes} ${hours >= 12 ? "PM" : "AM"}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    const xpWindow = document.querySelector('.xp-window');
+    const titleBar = document.getElementById('titleBar');
     let isDragging = false, offsetX = 0, offsetY = 0;
 
     titleBar.addEventListener('mousedown', (e) => {
@@ -267,133 +297,5 @@
       }
     });
   </script>
-
-  <div class="start-invisible-button" onclick="toggleStartMenu()"></div>
-  <div id="start-menu" class="start-menu hidden">
-    <div class="start-menu-header">AWGE</div>
-    <ul class="start-menu-items">
-      <li>My Computer</li>
-      <li>Network</li>
-      <li>Control Panel</li>
-      <li>Shut Down</li>
-    </ul>
-  </div>
-
-  <style>
-    .start-invisible-button {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100px;
-      height: 48px;
-      cursor: pointer;
-      z-index: 1100;
-    }
-
-    .start-menu {
-      position: fixed;
-      bottom: 48px;
-      left: 0;
-      width: 200px;
-      background: #c0c0c0;
-      border: 2px outset #fff;
-      font-family: Tahoma, sans-serif;
-      font-size: 14px;
-      z-index: 1100;
-    }
-
-    .start-menu-header {
-      background: #000080;
-      color: white;
-      padding: 6px;
-      font-weight: bold;
-    }
-
-    .start-menu-items {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .start-menu-items li {
-      padding: 8px 12px;
-      border-bottom: 1px solid #999;
-      background: #e0e0e0;
-      cursor: pointer;
-    }
-
-    .start-menu-items li:hover {
-      background: #3366cc;
-      color: white;
-    }
-
-    .hidden {
-      display: none;
-    }
-  
-    .start-menu {
-      position: fixed;
-      bottom: 48px;
-      left: 0;
-      width: 400px;
-      height: 260px;
-      background: #e3e3e3;
-      border: 2px outset #fff;
-      font-family: Tahoma, sans-serif;
-      font-size: 13px;
-      display: flex;
-      flex-direction: row;
-      z-index: 1100;
-    }
-
-    .start-menu-left {
-      width: 50%;
-      background: #d6e6ff;
-      padding: 10px;
-      border-right: 1px solid #999;
-    }
-
-    .start-menu-right {
-      width: 50%;
-      background: #f0f0f0;
-      padding: 10px;
-    }
-
-    .start-menu-header {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #000080;
-    }
-
-    .start-menu ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .start-menu ul li {
-      padding: 6px 8px;
-      margin-bottom: 4px;
-      background: #fff;
-      border: 1px solid #ccc;
-      cursor: pointer;
-    }
-
-    .start-menu ul li:hover {
-      background: #0066cc;
-      color: white;
-    }
-
-    .hidden {
-      display: none;
-    }
-</style>
-
-  <script>
-    function toggleStartMenu() {
-      const menu = document.getElementById('start-menu');
-      menu.classList.toggle('hidden');
-    }
-  </script>
-
 </body>
 </html>
