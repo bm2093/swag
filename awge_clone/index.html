@@ -4,71 +4,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basel</title>
+  <title>AWGE Clone XP</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
       background-color: black;
       font-family: 'Courier New', Courier, monospace;
       color: white;
-      overflow: hidden;
-      position: relative;
       height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .tab-frame {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      border: 2px solid white;
-      padding-top: 30px;
-      z-index: 0;
+    .xp-window {
+      width: 700px;
+      border: 2px solid #000080;
+      background-color: #ece9d8;
+      box-shadow: 4px 4px 0 #000;
     }
 
-    .tab-title {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #999;
-      font-family: 'Press Start 2P', monospace;
+    .xp-title-bar {
+      background-color: #000080;
+      color: white;
+      padding: 4px 8px;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Tahoma, sans-serif;
+    }
+
+    .xp-title-bar span {
+      flex-grow: 1;
+    }
+
+    .xp-buttons {
+      display: flex;
+      gap: 2px;
+    }
+
+    .xp-button {
+      width: 16px;
+      height: 16px;
+      background-color: #c0c0c0;
+      border: 1px solid #808080;
+      text-align: center;
+      line-height: 14px;
       font-size: 12px;
       color: black;
-      padding: 8px 12px;
-      border: 2px solid white;
-      border-bottom: none;
-      z-index: 2;
     }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      position: relative;
-      z-index: 1;
+    .xp-menu-bar {
+      background-color: #ece9d8;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #808080;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: black;
+      font-family: Tahoma, sans-serif;
     }
 
-    .logo {
-      width: 120px;
-      margin: 20px;
-      cursor: pointer;
+    .xp-content {
+      padding: 30px;
+      text-align: center;
     }
 
     .button-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 60px; justify-content: center;
-      max-width: 800px;
-      margin-top: 40px;
+      gap: 50px;
+      justify-items: center;
+      align-items: center;
     }
 
     .nav-button {
@@ -78,41 +86,51 @@
       background: none;
       border: none;
       cursor: pointer;
-      color: white;
+      color: black;
     }
 
     .nav-button img {
-      height: 100px;
-      margin-bottom: 10px;
+      height: 80px;
+      margin-bottom: 8px;
     }
 
     .nav-button h3 {
-      font-size: 18px;
+      font-size: 16px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
+      .xp-window {
+        width: 95%;
+      }
+
       .button-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-      .nav-button img {
-        height: 80px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="tab-frame"></div>
-  <div class="tab-title">AWGE</div>
-
-  <div class="container">
-    <div class="button-grid">
-      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media" /><h3>MEDIA</h3></button>
-      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif" alt="Forum" /><h3>FORUM</h3></button>
-      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif" alt="DVD" /><h3>DVD</h3></button>
-      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/hats_2.gif" alt="Shop" /><h3>SHOP</h3></button>
-      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif" alt="About" /><h3>ABOUT</h3></button>
-      <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif" alt="Contact" /><h3>CONTACT</h3></button>
+  <div class="xp-window">
+    <div class="xp-title-bar">
+      <span>AWGE - Menu</span>
+      <div class="xp-buttons">
+        <div class="xp-button">_</div>
+        <div class="xp-button">◻</div>
+        <div class="xp-button">✕</div>
+      </div>
+    </div>
+    <div class="xp-menu-bar">
+      File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Help
+    </div>
+    <div class="xp-content">
+      <div class="button-grid">
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media" /><h3>MEDIA</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif" alt="Forum" /><h3>FORUM</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif" alt="DVD" /><h3>DVD</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/hats_2.gif" alt="Shop" /><h3>SHOP</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif" alt="About" /><h3>ABOUT</h3></button>
+        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif" alt="Contact" /><h3>CONTACT</h3></button>
+      </div>
     </div>
   </div>
 </body>
