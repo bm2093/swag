@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AWGE XP Styled</title>
-  <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+  <meta charset="UTF-8">
+  <title>AWGE XP Desktop</title>
+  <link rel="stylesheet" href="https://unpkg.com/xp.css">
   <style>
     body {
+      margin: 0;
       background: url('Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg') no-repeat center center fixed;
       background-size: cover;
-      margin: 0;
       font-family: Tahoma, sans-serif;
-      overflow: hidden;
     }
 
     .window {
       position: absolute;
-      top: 15%;
+      top: 20%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
       width: 700px;
+      z-index: 2;
     }
 
     .window-body {
@@ -29,7 +28,7 @@
     .icon-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 30px;
       justify-items: center;
       align-items: center;
     }
@@ -62,8 +61,8 @@
       align-items: center;
       background: linear-gradient(to top, #0b5fc0 0%, #53a3f1 50%, #0b5fc0 100%);
       border-top: 2px solid #003399;
-      z-index: 1000;
       padding: 0 16px;
+      z-index: 3;
     }
 
     .start-button {
@@ -80,51 +79,139 @@
       font-family: Tahoma, sans-serif;
     }
 
-    .taskbar-clock {
-      color: white;
+    .clock {
       font-weight: bold;
+      color: white;
       font-size: 14px;
+    }
+
+    .start-menu {
+      position: fixed;
+      bottom: 48px;
+      left: 0;
+      width: 360px;
+      background-color: #ececec;
+      border: 2px outset #fff;
+      display: none;
+      z-index: 5;
+    }
+
+    .start-menu .window-body {
+      padding: 12px;
+      display: flex;
+    }
+
+    .start-col {
+      flex: 1;
+      padding: 4px;
+    }
+
+    .start-col ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .start-col li {
+      padding: 6px 8px;
+      margin: 4px 0;
+      background: white;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .start-col li:hover {
+      background: #0b5fc0;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <div class="window">
-    <div class="title-bar">
-      <div class="title-bar-text">AWGE - Menu</div>
-      <div class="title-bar-controls">
-        <button aria-label="Minimize"></button>
-        <button aria-label="Maximize"></button>
-        <button aria-label="Close"></button>
-      </div>
-    </div>
-    <div class="window-body">
-      <div class="icon-grid">
-        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif"><div>MEDIA</div></div>
-        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif"><div>FORUM</div></div>
-        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif"><div>DVD</div></div>
-      </div>
-      <div class="bottom-icons">
-        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif"><div>ABOUT</div></div>
-        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif"><div>CONTACT</div></div>
-      </div>
+
+<div class="window" id="draggableWindow">
+  <div class="title-bar" id="dragBar">
+    <div class="title-bar-text">AWGE - Menu</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
     </div>
   </div>
-
-  <div class="taskbar">
-    <div class="start-button">Start</div>
-    <div class="taskbar-clock" id="clock">00:00 AM</div>
+  <div class="window-body">
+    <div class="icon-grid">
+      <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif"><div>MEDIA</div></div>
+      <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif"><div>FORUM</div></div>
+      <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif"><div>DVD</div></div>
+    </div>
+    <div class="bottom-icons">
+      <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif"><div>ABOUT</div></div>
+      <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif"><div>CONTACT</div></div>
+    </div>
   </div>
+</div>
 
-  <script>
-    const clock = document.getElementById("clock");
-    function updateClock() {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      clock.textContent = `${(hours % 12) || 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`;
+<div class="taskbar">
+  <div class="start-button" onclick="toggleStartMenu()">Start</div>
+  <div class="clock" id="clock">00:00 AM</div>
+</div>
+
+<div class="start-menu" id="startMenu">
+  <div class="window-body">
+    <div class="start-col">
+      <ul>
+        <li>🎥 Media Player</li>
+        <li>💬 Forum</li>
+        <li>📀 DVD Archive</li>
+      </ul>
+    </div>
+    <div class="start-col">
+      <ul>
+        <li>🖥 My Computer</li>
+        <li>📁 Documents</li>
+        <li>⚙️ Control Panel</li>
+        <li>🔍 Search</li>
+        <li>🔒 Shut Down</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const h = (now.getHours() % 12 || 12).toString().padStart(2, '0');
+    const m = now.getMinutes().toString().padStart(2, '0');
+    const ampm = now.getHours() >= 12 ? "PM" : "AM";
+    document.getElementById("clock").textContent = `${h}:${m} ${ampm}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  function toggleStartMenu() {
+    const menu = document.getElementById("startMenu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
+
+  // Drag logic
+  const windowEl = document.getElementById("draggableWindow");
+  const dragBar = document.getElementById("dragBar");
+  let isDragging = false, offsetX, offsetY;
+
+  dragBar.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    const rect = windowEl.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+  });
+
+  document.addEventListener("mouseup", () => isDragging = false);
+
+  document.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+      windowEl.style.left = `${e.clientX - offsetX}px`;
+      windowEl.style.top = `${e.clientY - offsetY}px`;
+      windowEl.style.transform = "none";
     }
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
+  });
+</script>
 </body>
 </html>
