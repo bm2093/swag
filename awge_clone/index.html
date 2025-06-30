@@ -229,6 +229,7 @@
   </div>
 
   <div class="taskbar">
+<div class="taskbar-icon hidden" id="restoreWindow">AWGE - Menu</div>
     <div class="start-button" onclick="toggleStartMenu()">Start</div>
     <div class="taskbar-clock" id="clock">00:00</div>
   </div>
@@ -297,5 +298,17 @@
       }
     });
   </script>
+
+<div class="bsod" id="bsodScreen">
+  <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+  <p>If this is the first time you've seen this Stop error screen, restart your computer. If this screen appears again, follow these steps:</p>
+  <p>Check to make sure any new hardware or software is properly installed.</p>
+  <p>If problems continue, disable or remove any newly installed hardware or software.</p>
+  <p>Technical information: *** STOP: 0x0000008E</p>
+  <br />
+  <button onclick="location.reload()">Restart</button>
+</div>
+
+<div id="music-tab">Now Playing: swagswagswag.mp3</div>
 </body>
 </html>
