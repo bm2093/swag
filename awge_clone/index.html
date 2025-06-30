@@ -1,314 +1,130 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AWGE XP Startbar (CSS Only)</title>
+  <title>AWGE XP Styled</title>
+  <link rel="stylesheet" href="https://unpkg.com/xp.css" />
   <style>
     body {
       background: url('Microsoft_Nostalgic_Windows_Wallpaper_4k.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Courier New', Courier, monospace;
-      color: white;
       margin: 0;
-      height: 100vh;
+      font-family: Tahoma, sans-serif;
       overflow: hidden;
     }
 
-    .xp-window {
-      width: 700px;
-      border: 2px solid #000080;
-      background-color: #ece9d8;
-      box-shadow: 4px 4px 0 #000;
+    .window {
       position: absolute;
-      top: 20%;
+      top: 15%;
       left: 50%;
       transform: translateX(-50%);
+      width: 700px;
     }
 
-    .xp-title-bar {
-      background-color: #000080;
-      color: white;
-      padding: 4px 8px;
-      font-size: 14px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: Tahoma, sans-serif;
-      cursor: move;
+    .window-body {
+      padding: 24px;
     }
 
-    .xp-buttons {
-      display: flex;
-      gap: 2px;
-    }
-
-    .xp-button {
-      width: 16px;
-      height: 16px;
-      background-color: #c0c0c0;
-      border: 1px solid #808080;
-      text-align: center;
-      line-height: 14px;
-      font-size: 12px;
-      color: black;
-    }
-
-    .xp-menu-bar {
-      background-color: #ece9d8;
-      border-top: 1px solid #fff;
-      border-bottom: 1px solid #808080;
-      padding: 4px 8px;
-      font-size: 12px;
-      color: black;
-      font-family: Tahoma, sans-serif;
-    }
-
-    .xp-content {
-      padding: 30px;
-      text-align: center;
-    }
-
-    .taskbar {
-      background: linear-gradient(to top, #0b5fc0 0%, #53a3f1 50%, #0b5fc0 100%);
-      box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), inset 0 -1px 2px rgba(0,0,0,0.3);
-
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      height: 48px;
-      width: 100%;
-      background: linear-gradient(to top, #0066cc 0%, #3399ff 100%);
-      border-top: 2px solid #003399;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 1000;
-    }
-
-    .start-button {
-      background-color: #008000;
-      color: white;
-      font-family: Tahoma, sans-serif;
-      font-weight: bold;
-      padding: 4px 16px 4px 32px;
-      margin-left: 8px;
-      border: 2px outset #006600;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Windows_logo_-_2002.svg/32px-Windows_logo_-_2002.svg.png');
-      background-repeat: no-repeat;
-      background-size: 20px;
-      background-position: 6px center;
-      cursor: pointer;
-    }
-
-    .taskbar-clock {
-      margin-right: 12px;
-      color: #ffffff;
-      background: #3399ff;
-      padding: 6px 10px;
-      font-family: Tahoma, sans-serif;
-      font-size: 14px;
-      border: 1px solid #0077dd;
-    }
-
-    .start-menu {
-      position: fixed;
-      bottom: 48px;
-      left: 0;
-      width: 400px;
-      height: 260px;
-      background: #e3e3e3;
-      border: 2px outset #fff;
-      font-family: Tahoma, sans-serif;
-      font-size: 13px;
-      display: flex;
-      flex-direction: row;
-      z-index: 1100;
-    }
-
-    .start-menu-left {
-      width: 50%;
-      background: #d6e6ff;
-      padding: 10px;
-      border-right: 1px solid #999;
-    }
-
-    .start-menu-right {
-      width: 50%;
-      background: #f0f0f0;
-      padding: 10px;
-    }
-
-    .start-menu-header {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #000080;
-    }
-
-    .start-menu ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .start-menu ul li {
-      padding: 6px 8px;
-      margin-bottom: 4px;
-      background: #fff;
-      border: 1px solid #ccc;
-      cursor: pointer;
-    }
-
-    .start-menu ul li:hover {
-      background: #0066cc;
-      color: white;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .top-grid {
+    .icon-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 50px;
+      gap: 40px;
       justify-items: center;
       align-items: center;
     }
 
-    .bottom-row {
+    .icon-button {
+      text-align: center;
+      color: black;
+    }
+
+    .icon-button img {
+      height: 80px;
+      margin-bottom: 8px;
+    }
+
+    .bottom-icons {
       display: flex;
       justify-content: center;
       gap: 80px;
       margin-top: 30px;
     }
 
-    .nav-button {
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      background: none;
-      border: none;
+      background: linear-gradient(to top, #0b5fc0 0%, #53a3f1 50%, #0b5fc0 100%);
+      border-top: 2px solid #003399;
+      z-index: 1000;
+      padding: 0 16px;
+    }
+
+    .start-button {
+      background-color: #008000;
+      color: white;
+      font-weight: bold;
+      padding: 6px 20px 6px 36px;
+      border: 2px outset #006600;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Windows_logo_-_2002.svg/32px-Windows_logo_-_2002.svg.png');
+      background-repeat: no-repeat;
+      background-position: 8px center;
+      background-size: 20px;
       cursor: pointer;
-      color: black;
+      font-family: Tahoma, sans-serif;
     }
 
-    .nav-button img {
-      height: 80px;
-      margin-bottom: 8px;
-    }
-
-    .nav-button h3 {
-      font-size: 16px;
+    .taskbar-clock {
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div class="xp-window" id="xpWindow">
-    <div class="xp-title-bar" id="titleBar">
-      <span>AWGE - Menu</span>
-      <div class="xp-buttons">
-        <div class="xp-button">_</div>
-        <div class="xp-button">◻</div>
-        <div class="xp-button">✕</div>
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">AWGE - Menu</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
       </div>
     </div>
-    <div class="xp-menu-bar">File&nbsp;&nbsp;Edit&nbsp;&nbsp;View&nbsp;&nbsp;Help</div>
-    <div class="xp-content">
-      <div class="top-grid">
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif" alt="Media"><h3>MEDIA</h3></button>
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif" alt="Forum"><h3>FORUM</h3></button>
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif" alt="DVD"><h3>DVD</h3></button>
+    <div class="window-body">
+      <div class="icon-grid">
+        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/vhs-camera.gif"><div>MEDIA</div></div>
+        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeForum.gif"><div>FORUM</div></div>
+        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/awgeDVD.gif"><div>DVD</div></div>
       </div>
-      <div class="bottom-row">
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif" alt="About"><h3>ABOUT</h3></button>
-        <button class="nav-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif" alt="Contact"><h3>CONTACT</h3></button>
+      <div class="bottom-icons">
+        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/question-block-red.gif"><div>ABOUT</div></div>
+        <div class="icon-button"><img src="https://dwvo2npct47gg.cloudfront.net/gifs/pager.gif"><div>CONTACT</div></div>
       </div>
     </div>
   </div>
 
   <div class="taskbar">
-<div class="taskbar-icon hidden" id="restoreWindow">AWGE - Menu</div>
-    <div class="start-button" onclick="toggleStartMenu()">Start</div>
-    <div class="taskbar-clock" id="clock">00:00</div>
-  </div>
-
-  <div id="start-menu" class="start-menu hidden">
-    <div class="start-menu-left">
-      <div class="start-menu-header">AWGE OS</div>
-      <ul>
-        <li>🎥 Media Player</li>
-        <li>💬 Forum</li>
-        <li>📀 DVD Archive</li>
-        <li>❓ About</li>
-        <li>📟 Contact</li>
-      </ul>
-    </div>
-    <div class="start-menu-right">
-      <ul>
-        <li>🖥️ My Computer</li>
-        <li>📁 Documents</li>
-        <li>⚙️ Control Panel</li>
-        <li>🔍 Search</li>
-        <li>🔒 Shut Down</li>
-      </ul>
-    </div>
+    <div class="start-button">Start</div>
+    <div class="taskbar-clock" id="clock">00:00 AM</div>
   </div>
 
   <script>
-    const audio = new Audio("swagswagswag.mp3");
-    audio.loop = true;
-    audio.volume = 0.75;
-    audio.play();
-
-    function toggleStartMenu() {
-      const menu = document.getElementById('start-menu');
-      menu.classList.toggle('hidden');
-    }
-
     const clock = document.getElementById("clock");
     function updateClock() {
       const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
+      const hours = now.getHours();
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      clock.textContent = `${(hours % 12) || 12}:${minutes} ${hours >= 12 ? "PM" : "AM"}`;
+      clock.textContent = `${(hours % 12) || 12}:${minutes} ${hours >= 12 ? 'PM' : 'AM'}`;
     }
     setInterval(updateClock, 1000);
     updateClock();
-
-    const xpWindow = document.querySelector('.xp-window');
-    const titleBar = document.getElementById('titleBar');
-    let isDragging = false, offsetX = 0, offsetY = 0;
-
-    titleBar.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      const rect = xpWindow.getBoundingClientRect();
-      offsetX = e.clientX - rect.left;
-      offsetY = e.clientY - rect.top;
-    });
-
-    document.addEventListener('mouseup', () => isDragging = false);
-    document.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        xpWindow.style.left = `${e.clientX - offsetX}px`;
-        xpWindow.style.top = `${e.clientY - offsetY}px`;
-        xpWindow.style.position = 'absolute';
-        xpWindow.style.margin = '0';
-      }
-    });
   </script>
-
-<div class="bsod" id="bsodScreen">
-  <p>A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
-  <p>If this is the first time you've seen this Stop error screen, restart your computer. If this screen appears again, follow these steps:</p>
-  <p>Check to make sure any new hardware or software is properly installed.</p>
-  <p>If problems continue, disable or remove any newly installed hardware or software.</p>
-  <p>Technical information: *** STOP: 0x0000008E</p>
-  <br />
-  <button onclick="location.reload()">Restart</button>
-</div>
-
-<div id="music-tab">Now Playing: swagswagswag.mp3</div>
 </body>
 </html>
