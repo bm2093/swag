@@ -50,78 +50,97 @@
       margin-top: 30px;
     }
 
-    .taskbar {
+    .clock {
+      position: fixed;
+      bottom: 4px;
+      right: 16px;
+      font-weight: bold;
+      color: white;
+      font-size: 14px;
+      z-index: 999;
+    }
+
+    ul.start {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       background: linear-gradient(to top, #0b5fc0 0%, #53a3f1 50%, #0b5fc0 100%);
       border-top: 2px solid #003399;
       padding: 0 16px;
-      z-index: 3;
+      z-index: 998;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin: 0;
     }
 
-    .start-button {
-      background-color: #008000;
+    ul.start li a {
       color: white;
+      text-decoration: none;
       font-weight: bold;
       padding: 6px 20px 6px 36px;
-      border: 2px outset #006600;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Windows_logo_-_2002.svg/32px-Windows_logo_-_2002.svg.png');
+      display: inline-block;
+      background-image: url('img/windows.png');
       background-repeat: no-repeat;
       background-position: 8px center;
       background-size: 20px;
-      cursor: pointer;
+      background-color: #008000;
+      border: 2px outset #006600;
       font-family: Tahoma, sans-serif;
     }
 
-    .clock {
-      font-weight: bold;
-      color: white;
-      font-size: 14px;
-    }
-
-    .start-menu {
-      position: fixed;
+    .slide-open {
+      position: absolute;
       bottom: 48px;
       left: 0;
-      width: 360px;
-      background-color: #ececec;
+      background: #ececec;
       border: 2px outset #fff;
+      width: 400px;
       display: none;
-      z-index: 5;
+      z-index: 999;
     }
 
-    .start-menu .window-body {
-      padding: 12px;
+    .slide-open .top {
+      padding: 8px;
+      background: #0b5fc0;
+      color: white;
+    }
+
+    .slide-open .menu {
       display: flex;
+      padding: 10px;
     }
 
-    .start-col {
-      flex: 1;
-      padding: 4px;
-    }
-
-    .start-col ul {
+    .menu ul {
       list-style: none;
       padding-left: 0;
     }
 
-    .start-col li {
+    .menu li {
       padding: 6px 8px;
       margin: 4px 0;
       background: white;
       border: 1px solid #ccc;
-      cursor: pointer;
+      display: flex;
+      align-items: center;
     }
 
-    .start-col li:hover {
+    .menu li:hover {
       background: #0b5fc0;
       color: white;
+    }
+
+    .menu img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .bottom {
+      height: 10px;
+      background: #d0d0d0;
     }
   </style>
 </head>
@@ -149,33 +168,44 @@
   </div>
 </div>
 
-<div class="taskbar">
-  <div class="start-button" onclick="toggleStartMenu()">Start</div>
-  <div class="clock" id="clock">00:00 AM</div>
-</div>
+<!-- EXAMPLE CORRECTED SNIPPET -->
+<ul class="start">
+  <li class="xopen" tabindex="-1">
+    <a href="#" class="program-image">Start</a>
+    <div class="slide-open">
+      <div class="top"><h1>Guest</h1></div>
+      <div class="menu">
+        <div class="programs">
+          <ul>
+            <li><img src="src/img/ie.png" alt=""><a href="#">Internet Explorer</a></li>
+            <li><img src="src/img/paint.png" alt=""><a href="#">Paint</a></li>
+            <li><img src="src/img/media-player.png" alt=""><a href="#">Windows Media Player</a></li>
+            <li><img src="src/img/outlook-express.jpg" alt=""><a href="#">E-mail</a></li>
+          </ul>
+        </div>
+        <div class="system">
+          <ul>
+            <li><img src="src/img/documents.png" alt=""><a href="#">My Documents</a></li>
+            <li><img src="src/img/pictures.png" alt=""><a href="#">My Pictures</a></li>
+            <li><img src="src/img/music.png" alt=""><a href="#">My Music</a></li>
+            <li><img src="src/img/computer.png" alt=""><a href="#">My Computer</a></li>
+            <li><img src="src/img/control-panel.png" alt=""><a href="#">Control Panel</a></li>
+            <li><img src="src/img/support-help.png" alt=""><a href="#">Help and Support</a></li>
+            <li><img src="src/img/search.png" alt=""><a href="#">Search</a></li>
+            <li><img src="src/img/run.png" alt=""><a href="#">Run...</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom"></div>
+    </div>
+  </li>
+</ul>
 
-<div class="start-menu" id="startMenu">
-  <div class="window-body">
-    <div class="start-col">
-      <ul>
-        <li>🎥 Media Player</li>
-        <li>💬 Forum</li>
-        <li>📀 DVD Archive</li>
-      </ul>
-    </div>
-    <div class="start-col">
-      <ul>
-        <li>🖥 My Computer</li>
-        <li>📁 Documents</li>
-        <li>⚙️ Control Panel</li>
-        <li>🔍 Search</li>
-        <li>🔒 Shut Down</li>
-      </ul>
-    </div>
-  </div>
-</div>
+
+<div class="clock" id="clock">00:00 AM</div>
 
 <script>
+  // Clock
   function updateClock() {
     const now = new Date();
     const h = (now.getHours() % 12 || 12).toString().padStart(2, '0');
@@ -186,10 +216,12 @@
   setInterval(updateClock, 1000);
   updateClock();
 
-  function toggleStartMenu() {
-    const menu = document.getElementById("startMenu");
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-  }
+  // Start menu toggle
+  document.querySelector('.xopen').addEventListener('click', function (e) {
+    e.preventDefault();
+    const menu = this.querySelector('.slide-open');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  });
 
   // Drag logic
   const windowEl = document.getElementById("draggableWindow");
